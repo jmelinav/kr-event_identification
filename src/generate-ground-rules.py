@@ -42,7 +42,7 @@ for name in FILE_NAMES:
             ymax = columns[4]
             x_mid = str(int((int(xmin)+int(xmax))/2))
             y_mid = str(int((int(ymin) + int(ymax)) / 2))
-            frame_no = columns[6]
+            frame_no = columns[5]
             object = columns[9].replace('"','')
             object_info = OBJECT_DICT.get(object)+id
             position_info = "PositionOf(" + object_info + "," + x_mid + "," + y_mid + "," + frame_no + ")\n"
