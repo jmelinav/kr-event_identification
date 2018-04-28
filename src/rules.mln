@@ -1,0 +1,33 @@
+//Group(person,person,person,person)
+//Leader(grpno,person)
+//Visitor(grpno,person)
+Leader(person)
+Visitor(person)
+PartOfSameGroup(person,person,time)
+PositionOf(person,xLoc,yLoc,time)
+moving(person,time)
+stop(person,time)
+Distance(person,person,distX,distY,time)
+
+
+PositionOf(p,x,y,t) ^ PositionOf(p,x1,y1,succ(t)) ^ (x1!=x v y1!=y1) => moving(p,t)
+!moving(p,t) => stop(p,t)
+
+//distance calculation
+PositionOf(p1,x1,y1,t) ^ PositionOf(p2,x2,y2,t) ^ x1<x2 ^ y1<y2 ^ p1!=p2 => Distance(p1,p2,minus(x2,x1),minus(y2,y1),t)
+PositionOf(p1,x1,y1,t) ^ PositionOf(p2,x2,y2,t) ^ x2<x1 ^ y1<y2 ^ p1!=p2 => Distance(p1,p2,minus(x1,x2),minus(y2,y1),t)
+PositionOf(p1,x1,y1,t) ^ PositionOf(p2,x2,y2,t) ^ x1<x2 ^ y2<y1 ^ p1!=p2 => Distance(p1,p2,minus(x2,x1),minus(y1,y2),t)
+PositionOf(p1,x1,y1,t) ^ PositionOf(p2,x2,y2,t) ^ x2<x1 ^ y2<y1 ^ p1!=p2 => Distance(p1,p2,minus(x1,x2),minus(y1,y2),t)
+
+//part of same group
+Distance(p1,p2,x,y,t) ^ plus(x,y)<=100 => PartOfSameGroup(p1,p2,t)
+
+//visitor
+Distance(p1,p2,dx,dy,t) ^ plus(dx,dy)<=25 => Visitor(p1)
+
+%leader
+Distance(p1,p2,dx,dy,t) ^ plus(dx,dy)>25 => Leader(p1)
+
+//group
+
+//PartOfSameGroup(p1,p2,t) ^ PartOfSameGroup(p3,p4,t) ^ p1!=p2 ^ p2!=p3 ^ p3!=p4 ^ p4!=p1 ^ p4!=p2 ^ p1!=p3 => group(p1,p2,p3,p4)
