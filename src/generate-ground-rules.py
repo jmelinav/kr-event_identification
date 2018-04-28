@@ -4,22 +4,22 @@ print("test")
 import os
 
 OBJECT_DICT = {
-    "Person" :'p',
-    "Tree" :'t',
-    "BBQ_Oven":'bbq',
-    "Car1" : "c1_",
-    "Car2" : "c2_",
-    "Dog" : 'd',
-    "Frisbee" : 'f',
-    "Shelter1" : 's1_',
-    "Shelter2" : 's2_',
-    "Table_Seat": 'tbl',
-    "Trash_Bin1" : 'bin1_',
-    "Trash_Bin2" : 'bin2_',
-    "Building":'bld',
-    "Info_Booth":'ib',
-    "Desk":'d',
-    "Box":'b'
+    "Person" :'P',
+    "Tree" :'T',
+    "BBQ_Oven":'BBQ',
+    "Car1" : "C1_",
+    "Car2" : "C2_",
+    "Dog" : 'D',
+    "Frisbee" : 'F',
+    "Shelter1" : 'S1_',
+    "Shelter2" : 'S2_',
+    "Table_Seat": 'TBl',
+    "Trash_Bin1" : 'BIN1_',
+    "Trash_Bin2" : 'BIN2_',
+    "Building":'BLD',
+    "Info_Booth":'IB',
+    "Desk":'DSK',
+    "Box":'B'
 }
 
 FILE_NAMES =["outputID_GOPR0060.txt", "outputID_GOPR0062.txt","outputID_GOPR0064.txt","outputID_GOPR0065.txt",
