@@ -1,6 +1,15 @@
 //Group(person,person,person,person)
 //Leader(grpno,person)
 //Visitor(grpno,person)
+
+person ={P0,P1,P2,P3,P4}
+time={0,...,10}
+xLoc={0,...,1234566}
+yLoc={0,...,1234566}
+
+distX={0,...,1234566}
+distY={0,...,1234566}
+
 Leader(person)
 Visitor(person)
 PartOfSameGroup(person,person,time)
@@ -20,13 +29,13 @@ PositionOf(p1,x1,y1,t) ^ PositionOf(p2,x2,y2,t) ^ x1<x2 ^ y2<y1 ^ p1!=p2 => Dist
 PositionOf(p1,x1,y1,t) ^ PositionOf(p2,x2,y2,t) ^ x2<x1 ^ y2<y1 ^ p1!=p2 => Distance(p1,p2,minus(x1,x2),minus(y1,y2),t)
 
 //part of same group
-Distance(p1,p2,x,y,t) ^ plus(x,y)<=100 => PartOfSameGroup(p1,p2,t)
+Distance(p1,p2,x,y,t) ^ x <=100 ^ y<=100 => PartOfSameGroup(p1,p2,t)
 
 //visitor
-Distance(p1,p2,dx,dy,t) ^ plus(dx,dy)<=25 => Visitor(p1)
+Distance(p1,p2,x,y,t) ^ x <=20 ^ y<=20 ^ PartOfSameGroup(p1,p2,t) => Visitor(p1)
 
-%leader
-Distance(p1,p2,dx,dy,t) ^ plus(dx,dy)>25 => Leader(p1)
+//leader
+Distance(p1,p2,x,y,t) ^ x>25 ^ y>25 ^ PartOfSameGroup(p1,p2,t)=> Leader(p1)
 
 //group
 

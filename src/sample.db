@@ -1,17 +1,5 @@
-PositionOf(p0,233,519,0)
-PositionOf(p1,203,515,0)	
-PositionOf(p2,206,503,0)	
-PositionOf(p3,205,492,0)
-PositionOf(p4,206,479,0)
-
-
-PositionOf(p1,x1,y1,t) ^ PositionOf(p2,x2,y2,t) ^ x1<x2 ^ y1<y2 ^ p1!=p2 => Distance(p1,p2,x2-x1+y2-y1,t)
-PositionOf(p,x,y,t) ^ PositionOf(p,x1,y1,t+1) ^ (x1!=x v y1!=y1) => moving(p,t)
-PositionOf(p,x,y,t) ^ PositionOf(p,x1,y1,t1) ^ t+1=t1 ^ (x1!=x v y1!=y1) => moving(p,t)
-
-PositionOf(p,x,y,t) ^ PositionOf(p,x1,y1,plus(t,x)) ^ (x1!=x v y1!=y1) => moving(p,t)
-
-
-PositionOf(p1,x1,y1,t) ^ PositionOf(p2,x2,y2,t) ^ x1<x2 ^ y1<y2 ^ p1!=p2 => Distance(p1,p2,minus(x2,x1),minus(y2,y1),t)
-
-Distance(p1,p2,x,y,t) ^ plus(x,y)<=100 => PartOfSameGroup(p1,p2,t)
+PositionOf(P0,233,519,0)
+PositionOf(P1,203,515,0)
+PositionOf(P2,206,503,0)
+PositionOf(P3,205,492,0)
+PositionOf(P4,206,479,0)
