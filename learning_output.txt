@@ -1,0 +1,2012 @@
+jayanths-mbp:src mj$ ~/Documents/softwares/alchemy-2/bin/learnwts -i distance_rules.mln -o distance_rules_learned.mln -t outputID_GOPR0060.db -ne Distance,PartOfSameGroup,Leader,Visitor
+----------------- parameters ----------------
+-i = distance_rules.mln
+-cw =
+-ow =
+-m = 0
+-a = 0
+-p = 0
+-ms = 0
+-simtp = 0
+-seed = -1
+-lazy = 0
+-lazyNoApprox = 0
+-memLimit = -1
+-mwsMaxSteps = 1000000
+-tries = 1
+-targetWt = 0
+-hard = 0
+-heuristic = 2
+-tabuLength = 10
+-lazyLowState = 0
+-burnMinSteps = 100
+-burnMaxSteps = 100
+-minSteps = -1
+-maxSteps = 1000
+-maxSeconds = -1
+-subInterval = 2
+-numRuns = 3
+-numSwap = 10
+-numSolutions = 10
+-saRatio = 50
+-saTemperature = 80
+-lateSa = 1
+-numChains = 10
+-delta = 0.05
+-epsilonError = 0.01
+-fracConverged = 0.95
+-walksatType = 1
+-samplesPerTest = 100
+-periodic = 0
+-infer =
+-d = 0
+-g = 0
+-o = distance_rules_learned.mln
+-t = outputID_GOPR0060.db
+-l =
+-ne = Distance,PartOfSameGroup,Leader,Visitor
+-noAddUnitClauses = 0
+-multipleDatabases = 0
+-withEM = 0
+-dNumIter = 100
+-dMaxSec = 0
+-dMaxMin = 0
+-dMaxHour = 0
+-dLearningRate = 0.001
+-dMomentum = 0
+-dNoPW = 0
+-dVP = 0
+-dNewton = 0
+-dCG = 0
+-cgLambda = 100
+-cgMaxLambda = 1.79769e+308
+-cgMinLLChange = 1e-05
+-cgNoPrecond = 0
+-queryEvidence = 0
+-dInitWithLogOdds = 0
+-dMwsMaxSubsequentSteps = -1
+-gMaxIter = 10000
+-gConvThresh = 1e-05
+-gNoEqualPredWt = 0
+-noPrior = 0
+-priorMean = 0
+-priorStdDev = -1
+-lvg = 0
+-ic =
+----------------- end of parameters ----------------
+priorStdDev set to (discriminative learning's) default of 2
+Parsing MLN and creating domains...
+WARNING in "outputID_GOPR0060.db": line 24, col -1: Duplicate ground predicate Leader(P12) found.
+Found internal predicate: lessThan_dist
+h1
+h4
+h1
+h2
+h3
+Found internal predicate: lessThanEq_dist
+h1
+h4
+h1
+h2
+h3
+Found internal predicate: greaterThan_dist
+h1
+h2
+h3
+Adding clauses to MLN...
+converting to CNF:
+formula 0: Distance(p1,p2,d,t) ^ d < 100 ^ p1 != p2 => PartOfSameGroup(p1,p2,t)
+CNF conversion took 0 secs
+formula 1: Distance(p1,p2,d,t) ^ d <= 25 ^ PartOfSameGroup(p1,p2,t) ^ Visitor(p2) => Visitor(p1)
+CNF conversion took 0 secs
+formula 2: Distance(p1,p2,d,t) ^ d > 22 ^ d < 100 ^ PartOfSameGroup(p1,p2,t) ^ Visitor(p2) => Leader(p1)
+CNF conversion took 0 secs
+formula 3: Visitor(p1) => !Leader(p1)
+CNF conversion took 0 secs
+Parsing MLN and creating domains took 0.75 secs
+idx 0: 1 !Distance(a1,a2,a3,a4) v PartOfSameGroup(a1,a2,a4) v a1 = a2 v !(a3 < 100)
+idx 0: 1 !Distance(a1,a2,a3,a4) v !PartOfSameGroup(a1,a2,a4) v Visitor(a1) v !Visitor(a2) v !(a3 < 25)
+idx 0: 1 !Distance(a1,a2,a3,a4) v !PartOfSameGroup(a1,a2,a4) v Leader(a1) v !Visitor(a2) v !(a3 < 100) v !(a3 > 22)
+idx 0: 1 !Leader(a1) v !Visitor(a1)
+idx 0: 0 Distance(a1,a2,a3,a4)
+idx 0: 0 PartOfSameGroup(a1,a2,a3)
+idx 0: 0 Leader(a1)
+idx 0: 0 Visitor(a1)
+Setting number of MCMC steps to 714
+
+constructing state for domain 0...
+Set hard weight to 417924
+creating mrf...
+
+
+
+number of grounded predicates = 105084
+number of grounded clauses = 133490
+Time taken to construct MRF = 1 mins, 21.34 secs
+[VS] 1 mins, 22.1 secs
+>>> DONE: Initial num. of clauses: 133490
+
+done constructing variable states
+
+
+Constructing discriminative learner...
+
+Initializing weights ...
+List of CNF Clauses :
+0:1 !Distance(-1,-2,-3,-4) v PartOfSameGroup(-1,-2,-4) v -1 = -2 v !(-3 < 100)
+1:1 !Distance(-1,-2,-3,-4) v !PartOfSameGroup(-1,-2,-4) v Visitor(-1) v !Visitor(-2) v !(-3 < 25)
+2:1 !Distance(-1,-2,-3,-4) v !PartOfSameGroup(-1,-2,-4) v Leader(-1) v !Visitor(-2) v !(-3 < 100) v !(-3 > 22)
+3:1 !Leader(-1) v !Visitor(-1)
+4:1 Distance(-1,-2,-3,-4)
+5:1 PartOfSameGroup(-1,-2,-3)
+6:1 Leader(-1)
+7:1 Visitor(-1)
+Initializing MC-SAT with MaxWalksat on hard clauses...
+learning (discriminative) weights ..
+
+Iteration 1 :
+
+Elapsed time: 0s
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 35.16 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 11.95 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 47.28 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 22.25 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 57.89 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 33.24 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 8.34 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 14.15 secs
+Time taken for SampleSat = 2 mins, 59.9 secs
+Done with inference
+Getting gradient...
+8
+7.01806e+06 3.41169e+06 6.82337e+06 7363 3.72204e+07 279877 5054 5065
+Maximum estimated improvement: 99582.9
+Weights:	New		Average
+0:		0.184897		0.184897
+1:		0.173317		0.173317
+2:		0.010129		0.010129
+3:		1.35481		1.35481
+4:		-1.91475		-1.91475
+5:		-1.34941		-1.34941
+6:		-1.69147		-1.69147
+7:		-0.795603		-0.795603
+
+Iteration 2 :
+
+Elapsed time: 254.22s (4m 14s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 43.82 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 26.92 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 2 mins, 11.08 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 56.84 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 3 mins, 41.27 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 4 mins, 24.1 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 5 mins, 8.1 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 5 mins, 14.55 secs
+Time taken for SampleSat = 3 mins, 53.08 secs
+Done with inference
+Getting gradient...
+8
+8.59415e+06 3.62622e+06 7.24564e+06 9920 9.46268e+06 141299 1408 1628
+Pred*dist = -50335.5
+Real*dist = -24396.5
+Lambda = 100
+Maximum estimated improvement: 369.521
+Weights:	New		Average
+0:		0.345791		0.265344
+1:		0.225606		0.199462
+2:		0.0163705		0.0132497
+3:		1.37924		1.36702
+4:		-1.92872		-1.92173
+5:		-1.58786		-1.46864
+6:		-1.84567		-1.76857
+7:		-0.530647		-0.663125
+
+Iteration 3 :
+
+Elapsed time: 568.84s (9m 28s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 47.11 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 35.35 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 2 mins, 24.54 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 3 mins, 13.17 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 4 mins, 2.18 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 4 mins, 50.64 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 5 mins, 38.66 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 5 mins, 45.71 secs
+Time taken for SampleSat = 4 mins, 24.38 secs
+Done with inference
+Getting gradient...
+8
+8.70293e+06 3.62636e+06 7.24276e+06 9915 9.2203e+06 137800 1300 1833
+Pred*dist = -193.775
+Real*dist = -338.968
+Lambda = 50
+Maximum estimated improvement: 12539.8
+Weights:	New		Average
+0:		1.00731		0.512665
+1:		0.338029		0.245651
+2:		0.0286627		0.0183874
+3:		1.42825		1.38743
+4:		-2.90058		-2.24802
+5:		-2.06876		-1.66868
+6:		-2.01978		-1.85231
+7:		-0.223035		-0.516428
+
+Iteration 4 :
+
+Elapsed time: 914.61s (15m 14s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 42.39 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 24.28 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 2 mins, 6.92 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 48.43 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 3 mins, 30.04 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 4 mins, 11.49 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 54.08 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 5 mins, 0.34 secs
+Time taken for SampleSat = 3 mins, 38.94 secs
+Done with inference
+Getting gradient...
+8
+9.19958e+06 3.63346e+06 7.25554e+06 9884 3.64264e+06 89902 952 3893
+Pred*dist = -6313.72
+Real*dist = -4452.55
+Lambda = 50
+Maximum estimated improvement: 525.247
+Weights:	New		Average
+0:		1.35798		0.723994
+1:		0.743251		0.370051
+2:		0.0470745		0.0255592
+3:		1.51181		1.41852
+4:		-3.0009		-2.43624
+5:		-2.1479		-1.78849
+6:		-1.94209		-1.87475
+7:		-0.393519		-0.485701
+
+Iteration 5 :
+
+Elapsed time: 1215s (20m 15s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 41.39 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 23.74 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 2 mins, 5.8 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 47.12 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 3 mins, 29.72 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 4 mins, 11.97 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 54.14 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 5 mins, 0.69 secs
+Time taken for SampleSat = 3 mins, 39.2 secs
+Done with inference
+Getting gradient...
+8
+9.2559e+06 3.63603e+06 7.26432e+06 9903 3.26030e+06 85525 1095 2854
+Pred*dist = -271.272
+Real*dist = -441.348
+Lambda = 25
+Maximum estimated improvement: 3234.68
+Weights:	New		Average
+0:		2.28226		1.03565
+1:		1.26991		0.550023
+2:		0.00739194		0.0219257
+3:		1.5037		1.43556
+4:		-3.79851		-2.70869
+5:		-2.20636		-1.87206
+6:		-1.98344		-1.89649
+7:		-0.347327		-0.458026
+
+Iteration 6 :
+
+Elapsed time: 1515.77s (25m 15s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 37.61 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 15.59 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 52.88 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 30.89 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 3 mins, 8.56 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 46.44 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 24.24 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 29.83 secs
+Time taken for SampleSat = 3 mins, 7.95 secs
+Done with inference
+Getting gradient...
+8
+9.33728e+06 3.63784e+06 7.27008e+06 9886 1.47586e+06 69642 928 3694
+Pred*dist = -1639.55
+Real*dist = -1133.11
+Lambda = 25
+Maximum estimated improvement: 283.576
+Weights:	New		Average
+0:		2.99504		1.36221
+1:		2.11237		0.810414
+2:		-0.638206		-0.0880963
+3:		1.61325		1.46517
+4:		-3.97851		-2.92033
+5:		-1.91016		-1.87841
+6:		-1.75686		-1.87322
+7:		-0.693263		-0.497232
+
+Iteration 7 :
+
+Elapsed time: 1785.67s (29m 45s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 38.01 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 15.68 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 53.41 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 31.77 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 3 mins, 9.33 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 46.88 secs, num. preds = 105084, num. clauses = 133490
+
+
+Sample (per pred) 700, time elapsed = 4 mins, 24.84 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 30.62 secs
+Time taken for SampleSat = 3 mins, 8.71 secs
+Done with inference
+Getting gradient...
+8
+9.34902e+06 3.63840e+06 7.2281e+06 9965 1.26143e+06 105036 50 9256
+Pred*dist = -166.01
+Real*dist = -166.969
+Lambda = 12.5
+Maximum estimated improvement: 364.672
+Weights:	New		Average
+0:		3.41779		1.65587
+1:		1.99977		0.980322
+2:		-0.462514		-0.141585
+3:		1.42374		1.45926
+4:		-4.27227		-3.11346
+5:		-2.06238		-1.90469
+6:		0.379224		-1.55144
+7:		-3.46251		-0.920844
+
+Iteration 8 :
+
+Elapsed time: 2056.34s (34m 16s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 35.76 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 12.39 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 48.29 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 24.25 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 3 mins, 1.13 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 37.11 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 13.2 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 18.55 secs
+Time taken for SampleSat = 2 mins, 57 secs
+Done with inference
+Getting gradient...
+8
+9.35255e+06 3.63852e+06 7.27664e+06 9921 920887 73328 5854 300
+Pred*dist = -261.082
+Real*dist = -148.519
+Lambda = 12.5
+Maximum estimated improvement: 214.494
+Weights:	New		Average
+0:		3.93203		1.94039
+1:		1.56946		1.05396
+2:		-1.63773		-0.328603
+3:		1.42904		1.45548
+4:		-4.54388		-3.29227
+5:		-1.9899		-1.91534
+6:		-0.9063		-1.4708
+7:		-1.54918		-0.999386
+
+Iteration 9 :
+
+Elapsed time: 2314.95s (38m 34s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 35.05 secs, num. preds = 105084, num. clauses = 133490
+
+
+Sample (per pred) 200, time elapsed = 1 mins, 11.15 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 46.63 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 22.39 secs, num. preds = 105084, num. clauses = 133490
+
+
+
+Sample (per pred) 500, time elapsed = 2 mins, 57.89 secs, num. preds = 105084, num. clauses = 133490
+
+
+
+
+Sample (per pred) 600, time elapsed = 3 mins, 32.98 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 8.26 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 13.51 secs
+Time taken for SampleSat = 2 mins, 51.71 secs
+Done with inference
+Getting gradient...
+8
+9.3547e+06 3.63853e+06 7.1878e+06 9990 779820 124905 67 9760
+Pred*dist = -152.392
+Real*dist = 29.7521
+Lambda = 50
+Backtracking!
+
+Iteration 9 :
+
+Elapsed time: 2568.53s (42m 48s)
+Running inference ...
+Running MC-SAT sampling...
+
+
+
+Sample (per pred) 100, time elapsed = 36.44 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 13.36 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 49.54 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 26.26 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 3 mins, 2.71 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 39.52 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 15.82 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 21.23 secs
+Time taken for SampleSat = 2 mins, 58.8 secs
+Done with inference
+Getting gradient...
+8
+1.87051e+07 7.27703e+06 1.4553e+07 19850 1.84012e+06 147954 11595 630
+Lambda = 50
+Maximum estimated improvement: 123.067
+Weights:	New		Average
+0:		3.72725		2.13893
+1:		1.74028		1.13022
+2:		-0.745815		-0.37496
+3:		1.41678		1.45118
+4:		-4.44568		-3.42042
+5:		-2.02932		-1.92801
+6:		-0.298836		-1.34058
+7:		-2.58356		-1.1754
+
+Iteration 10 :
+
+Elapsed time: 2829.82s (47m 9s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 36.18 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 12.29 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 49.05 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 25.19 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 3 mins, 1.18 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 37.05 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 14.99 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 20.32 secs
+Time taken for SampleSat = 2 mins, 57.54 secs
+Done with inference
+Getting gradient...
+8
+9.35406e+06 3.63842e+06 7.2753e+06 9892 775067 74849 3687 1008
+Pred*dist = -99.206
+Real*dist = -83.4047
+Lambda = 25
+Maximum estimated improvement: 81.9891
+Weights:	New		Average
+0:		3.97933		2.32297
+1:		1.8001		1.19721
+2:		-1.76106		-0.513569
+3:		1.46861		1.45292
+4:		-4.58269		-3.53665
+5:		-2.00131		-1.93534
+6:		-0.621948		-1.26872
+7:		-1.80986		-1.23885
+
+Iteration 11 :
+
+Elapsed time: 3090.21s (51m 30s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 35.23 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 11.49 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 46.63 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 21.8 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 57.47 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 32.61 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 7.87 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 13.06 secs
+Time taken for SampleSat = 2 mins, 51.11 secs
+Done with inference
+Getting gradient...
+8
+9.35487e+06 3.63851e+06 7.18012e+06 9990 763695 127414 127 9447
+Pred*dist = -63.783
+Real*dist = 69.1138
+Lambda = 100
+Backtracking!
+
+Iteration 11 :
+
+Elapsed time: 3343.33s (55m 43s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 35.89 secs, num. preds = 105084, num. clauses = 133490
+
+
+Sample (per pred) 200, time elapsed = 1 mins, 11.77 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 50.2 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 28.14 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 3 mins, 5.42 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 41.53 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 17.97 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 23.39 secs
+Time taken for SampleSat = 2 mins, 59.47 secs
+Done with inference
+Getting gradient...
+8
+1.8708e+07 7.27677e+06 1.45492e+07 19766 1.5521e+06 149767 7157 2339
+Lambda = 100
+Maximum estimated improvement: 68.8716
+Weights:	New		Average
+0:		4.0069		2.47605
+1:		1.77033		1.24931
+2:		-0.898228		-0.548538
+3:		1.46849		1.45434
+4:		-4.59772		-3.63311
+5:		-2.00129		-1.94133
+6:		-0.666931		-1.21401
+7:		-2.20625		-1.3268
+
+Iteration 12 :
+
+Elapsed time: 3606.78s (1h 0m 6s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.96 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 11.08 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 46.72 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 22.46 secs, num. preds = 105084, num. clauses = 133490
+
+
+
+
+Sample (per pred) 500, time elapsed = 2 mins, 57.83 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 35.18 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 10.69 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 15.96 secs
+Time taken for SampleSat = 2 mins, 53.63 secs
+Done with inference
+Getting gradient...
+8
+9.35472e+06 3.63823e+06 7.2717e+06 9866 667896 76869 2208 2301
+Pred*dist = -54.774
+Real*dist = -43.4512
+Lambda = 50
+Maximum estimated improvement: 43.5427
+Weights:	New		Average
+0:		4.30127		2.62815
+1:		2.00365		1.31217
+2:		-1.30135		-0.611273
+3:		1.56301		1.46339
+4:		-4.73584		-3.72501
+5:		-1.9719		-1.94388
+6:		-0.985924		-1.195
+7:		-2.05923		-1.38783
+
+Iteration 13 :
+
+Elapsed time: 3862.8s (1h 4m 22s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 35.24 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 10.38 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 45.54 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 20.79 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 56.44 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 31.55 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 6.34 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 12.13 secs
+Time taken for SampleSat = 2 mins, 50.22 secs
+Done with inference
+Getting gradient...
+8
+9.35523e+06 3.6383e+06 7.24317e+06 9927 608330 93864 254 7701
+Pred*dist = -33.1675
+Real*dist = -12.875
+Lambda = 50
+Maximum estimated improvement: 10.9426
+Weights:	New		Average
+0:		4.38491		2.76329
+1:		2.03818		1.36802
+2:		-1.27649		-0.662444
+3:		1.53712		1.46906
+4:		-4.78077		-3.80622
+5:		-1.99969		-1.94817
+6:		-0.753671		-1.16105
+7:		-2.33031		-1.46033
+
+Iteration 14 :
+
+Elapsed time: 4114.99s (1h 8m 34s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.89 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.85 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 45.37 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 20.52 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 55.51 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 31.02 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 6.18 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 11.46 secs
+Time taken for SampleSat = 2 mins, 49.35 secs
+Done with inference
+Getting gradient...
+8
+9.35541e+06 3.63825e+06 7.25407e+06 9908 570815 85476 611 6037
+Pred*dist = -8.96359
+Real*dist = -7.07347
+Lambda = 25
+Maximum estimated improvement: 10.7089
+Weights:	New		Average
+0:		4.49761		2.88717
+1:		2.19418		1.42703
+2:		-1.26057		-0.705167
+3:		1.53423		1.47372
+4:		-4.85689		-3.88127
+5:		-2.01265		-1.95278
+6:		-0.747299		-1.1315
+7:		-2.61526		-1.54283
+
+Iteration 15 :
+
+Elapsed time: 4366.5s (1h 12m 46s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.46 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 10.08 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 45.03 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 20.35 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 55.36 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 30.54 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 5.77 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 11.01 secs
+Time taken for SampleSat = 2 mins, 48.81 secs
+Done with inference
+Getting gradient...
+8
+9.3556e+06 3.63843e+06 7.27219e+06 9900 517786 74349 2116 1964
+Pred*dist = -6.91067
+Real*dist = -2.7085
+Lambda = 25
+Maximum estimated improvement: 6.61545
+Weights:	New		Average
+0:		4.54162		2.99747
+1:		2.11818		1.47311
+2:		-1.47776		-0.756673
+3:		1.53423		1.47775
+4:		-4.89992		-3.94918
+5:		-1.98654		-1.95503
+6:		-0.963275		-1.12028
+7:		-2.43888		-1.60256
+
+Iteration 16 :
+
+Elapsed time: 4617.58s (1h 16m 57s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.74 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.76 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.27 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.38 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 54.14 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 29.03 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 4.28 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 9.47 secs
+Time taken for SampleSat = 2 mins, 47.82 secs
+Done with inference
+Getting gradient...
+8
+9.35561e+06 3.63826e+06 7.25243e+06 9930 512441 86844 458 6076
+Pred*dist = -4.99738
+Real*dist = 1.74434
+Lambda = 100
+Backtracking!
+
+Iteration 16 :
+
+Elapsed time: 4867.1s (1h 21m 7s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.7 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.59 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.37 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.79 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 54.91 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 30.03 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 5.42 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 10.57 secs
+Time taken for SampleSat = 2 mins, 48.21 secs
+Done with inference
+Getting gradient...
+8
+1.87112e+07 7.27674e+06 1.45407e+07 19755 1.03867e+06 151393 3674 4888
+Lambda = 100
+Maximum estimated improvement: 1.00531
+Weights:	New		Average
+0:		4.49738		3.09121
+1:		2.18031		1.51731
+2:		-1.28814		-0.78989
+3:		1.54715		1.48209
+4:		-4.86511		-4.00642
+5:		-2.00399		-1.95809
+6:		-0.823035		-1.10171
+7:		-2.57824		-1.66354
+
+Iteration 17 :
+
+Elapsed time: 5117.73s (1h 25m 17s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.37 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 8.83 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 43.72 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.75 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.45 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.64 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.9 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 9.32 secs
+Time taken for SampleSat = 2 mins, 47.54 secs
+Done with inference
+Getting gradient...
+8
+9.3556e+06 3.63831e+06 7.26739e+06 9867 518389 78249 1389 3487
+Pred*dist = -0.921068
+Real*dist = -0.745301
+Lambda = 50
+Maximum estimated improvement: 2.4306
+Weights:	New		Average
+0:		4.51665		3.17506
+1:		2.21304		1.55823
+2:		-1.3598		-0.823414
+3:		1.59526		1.48875
+4:		-4.89748		-4.05884
+5:		-1.99284		-1.96013
+6:		-0.956628		-1.09317
+7:		-2.61796		-1.71968
+
+Iteration 18 :
+
+Elapsed time: 5367.12s (1h 29m 27s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.4 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 8.87 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 43.82 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.28 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.96 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.31 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 4.23 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 9.38 secs
+Time taken for SampleSat = 2 mins, 47.88 secs
+Done with inference
+Getting gradient...
+8
+9.3556e+06 3.6384e+06 7.26264e+06 9937 503437 80670 989 4190
+Pred*dist = -1.95252
+Real*dist = -1.18605
+Lambda = 50
+Maximum estimated improvement: 0.132629
+Weights:	New		Average
+0:		4.52017		3.24979
+1:		2.1839		1.59299
+2:		-1.36042		-0.853247
+3:		1.56742		1.49312
+4:		-4.90081		-4.10561
+5:		-1.99388		-1.96201
+6:		-0.960596		-1.08581
+7:		-2.64423		-1.77105
+
+Iteration 19 :
+
+Elapsed time: 5616.56s (1h 33m 36s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.83 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.3 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.55 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.35 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 54.07 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.4 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.87 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 9.19 secs
+Time taken for SampleSat = 2 mins, 47.67 secs
+Done with inference
+Getting gradient...
+8
+9.35562e+06 3.63839e+06 7.2643e+06 9915 502089 79699 985 3899
+Pred*dist = -0.125194
+Real*dist = -0.1138
+Lambda = 25
+Maximum estimated improvement: 0.6978
+Weights:	New		Average
+0:		4.52545		3.31693
+1:		2.09635		1.61948
+2:		-1.39388		-0.881702
+3:		1.52521		1.49481
+4:		-4.91743		-4.14834
+5:		-1.98987		-1.96348
+6:		-0.999662		-1.08127
+7:		-2.725		-1.82126
+
+Iteration 20 :
+
+Elapsed time: 5865.82s (1h 37m 45s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.32 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 8.76 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.14 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.38 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.94 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 29.22 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 4.27 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 9.53 secs
+Time taken for SampleSat = 2 mins, 47.81 secs
+Done with inference
+Getting gradient...
+8
+9.35567e+06 3.6383e+06 7.26346e+06 9898 494859 80153 1049 4091
+Pred*dist = -0.585601
+Real*dist = -0.495687
+Lambda = 12.5
+Maximum estimated improvement: 0.370561
+Weights:	New		Average
+0:		4.48939		3.37555
+1:		2.18088		1.64755
+2:		-1.41453		-0.908343
+3:		1.54125		1.49713
+4:		-4.92703		-4.18728
+5:		-1.9893		-1.96477
+6:		-1.05631		-1.08002
+7:		-2.82854		-1.87162
+
+Iteration 21 :
+
+Elapsed time: 6115.41s (1h 41m 55s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.41 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.53 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.68 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.31 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 54.37 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 29.59 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 4.2 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 9.33 secs
+Time taken for SampleSat = 2 mins, 47.83 secs
+Done with inference
+Getting gradient...
+8
+9.35567e+06 3.63835e+06 7.26539e+06 9899 489123 80643 1058 3568
+Pred*dist = -0.329972
+Real*dist = -0.261627
+Lambda = 6.25
+Maximum estimated improvement: 0.924778
+Weights:	New		Average
+0:		4.43975		3.42623
+1:		2.15142		1.67155
+2:		-1.52125		-0.937529
+3:		1.54565		1.49944
+4:		-4.94156		-4.22319
+5:		-1.99292		-1.96611
+6:		-1.18487		-1.08502
+7:		-2.93186		-1.92211
+
+Iteration 22 :
+
+Elapsed time: 6364.8s (1h 46m 4s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.04 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.61 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.21 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.65 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.03 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.39 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.09 secs
+Time taken for SampleSat = 2 mins, 46.39 secs
+Done with inference
+Getting gradient...
+8
+9.35562e+06 3.63828e+06 7.26176e+06 9911 485868 81222 761 4008
+Pred*dist = -0.59417
+Real*dist = -0.312247
+Lambda = 6.25
+Maximum estimated improvement: 0.158692
+Weights:	New		Average
+0:		4.45196		3.47285
+1:		2.21476		1.69624
+2:		-1.53971		-0.964901
+3:		1.52138		1.50044
+4:		-4.94512		-4.25601
+5:		-1.9985		-1.96758
+6:		-1.11232		-1.08626
+7:		-3.02524		-1.97225
+
+Iteration 23 :
+
+Elapsed time: 6612.95s (1h 50m 12s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.26 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.73 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.33 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.59 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.95 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.57 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 2.93 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.07 secs
+Time taken for SampleSat = 2 mins, 46.41 secs
+Done with inference
+Getting gradient...
+8
+9.35558e+06 3.63826e+06 7.25118e+06 9936 491570 87281 359 5774
+Pred*dist = -0.139092
+Real*dist = -0.230999
+Lambda = 3.125
+Maximum estimated improvement: 0.825329
+Weights:	New		Average
+0:		4.48644		3.51692
+1:		2.37116		1.72558
+2:		-1.57749		-0.991536
+3:		1.45418		1.49843
+4:		-4.95445		-4.28637
+5:		-2.01621		-1.96969
+6:		-0.870344		-1.07687
+7:		-3.27391		-2.02884
+
+Iteration 24 :
+
+Elapsed time: 6861.08s (1h 54m 21s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.28 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.85 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.34 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.72 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 54.14 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.71 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.26 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.41 secs
+Time taken for SampleSat = 2 mins, 46.69 secs
+Done with inference
+Getting gradient...
+8
+9.35568e+06 3.63836e+06 7.25137e+06 9931 488995 86081 565 5555
+Pred*dist = -0.650765
+Real*dist = -0.560122
+Lambda = 1.5625
+Maximum estimated improvement: 0.406649
+Weights:	New		Average
+0:		4.44693		3.55567
+1:		2.22529		1.7464
+2:		-1.54596		-1.01464
+3:		1.46119		1.49687
+4:		-4.95312		-4.31416
+5:		-2.02175		-1.97186
+6:		-0.884101		-1.06884
+7:		-3.26142		-2.0802
+
+Iteration 25 :
+
+Elapsed time: 7109.54s (1h 58m 29s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 35.17 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.8 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.37 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.92 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 54.26 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.55 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.08 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.23 secs
+Time taken for SampleSat = 2 mins, 46.57 secs
+Done with inference
+Getting gradient...
+8
+9.35548e+06 3.63832e+06 7.26242e+06 9910 476619 78947 1027 3826
+Pred*dist = -0.222279
+Real*dist = 0.101005
+Lambda = 6.25
+Backtracking!
+
+Iteration 25 :
+
+Elapsed time: 7357.83s (2h 2m 37s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.83 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.63 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.13 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.44 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.86 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.48 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 2.93 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.08 secs
+Time taken for SampleSat = 2 mins, 46.35 secs
+Done with inference
+Getting gradient...
+8
+1.87114e+07 7.27672e+06 1.4516e+07 19774 967427 164209 1837 9054
+Lambda = 6.25
+Maximum estimated improvement: 0.130565
+Weights:	New		Average
+0:		4.46879		3.5922
+1:		2.32691		1.76962
+2:		-1.58023		-1.03726
+3:		1.50215		1.49709
+4:		-4.95491		-4.33979
+5:		-2.02111		-1.97383
+6:		-0.882786		-1.0614
+7:		-3.35276		-2.1311
+
+Iteration 26 :
+
+Elapsed time: 7605.97s (2h 6m 45s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.94 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.42 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 43.69 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.92 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.52 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.34 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.99 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 9.28 secs
+Time taken for SampleSat = 2 mins, 46.98 secs
+Done with inference
+Getting gradient...
+8
+9.35562e+06 3.63828e+06 7.25382e+06 9931 484888 84893 515 5526
+Pred*dist = -0.0995772
+Real*dist = -0.225962
+Lambda = 3.125
+Maximum estimated improvement: 1.49151
+Weights:	New		Average
+0:		4.4504		3.6252
+1:		2.27926		1.78923
+2:		-1.5553		-1.05718
+3:		1.54176		1.4988
+4:		-4.9564		-4.3635
+5:		-2.04425		-1.97654
+6:		-0.749493		-1.0494
+7:		-3.71376		-2.19197
+
+Iteration 27 :
+
+Elapsed time: 7855.32s (2h 10m 55s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.28 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 8.69 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 43.89 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.33 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 52.65 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 27.26 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 1.67 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 6.89 secs
+Time taken for SampleSat = 2 mins, 45.54 secs
+Done with inference
+Getting gradient...
+8
+9.35559e+06 3.63842e+06 7.26984e+06 9903 469270 74185 1866 2127
+Pred*dist = -0.985491
+Real*dist = 1.44702
+Lambda = 12.5
+Backtracking!
+
+Iteration 27 :
+
+Elapsed time: 8102.27s (2h 15m 2s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.95 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.44 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.02 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.34 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 54.24 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.7 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.89 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.96 secs
+Time taken for SampleSat = 2 mins, 47.14 secs
+Done with inference
+Getting gradient...
+8
+1.87112e+07 7.27662e+06 1.4511e+07 19844 967969 167643 1408 10168
+Lambda = 12.5
+Maximum estimated improvement: 0.18016
+Weights:	New		Average
+0:		4.50182		3.65767
+1:		2.34388		1.80977
+2:		-1.57021		-1.07619
+3:		1.44994		1.49699
+4:		-4.95485		-4.3854
+5:		-2.03124		-1.97857
+6:		-0.854538		-1.04218
+7:		-3.37569		-2.23582
+
+Iteration 28 :
+
+Elapsed time: 8351.3s (2h 19m 11s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.22 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.11 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 43.95 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.69 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.11 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 27.43 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 2.9 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.12 secs
+Time taken for SampleSat = 2 mins, 46.49 secs
+Done with inference
+Getting gradient...
+8
+9.35558e+06 3.63837e+06 7.25813e+06 9900 481323 81643 883 4520
+Pred*dist = -0.125284
+Real*dist = -0.0838234
+Lambda = 12.5
+Maximum estimated improvement: 0.0695883
+Weights:	New		Average
+0:		4.51361		3.68824
+1:		2.29543		1.82711
+2:		-1.56832		-1.09376
+3:		1.468		1.49596
+4:		-4.95394		-4.40571
+5:		-2.03299		-1.98051
+6:		-0.859192		-1.03565
+7:		-3.41045		-2.27777
+
+Iteration 29 :
+
+Elapsed time: 8599.48s (2h 23m 19s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 33.99 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 8.39 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 43.72 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.55 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.02 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.33 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.05 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.38 secs
+Time taken for SampleSat = 2 mins, 46.67 secs
+Done with inference
+Getting gradient...
+8
+9.35564e+06 3.63847e+06 7.27173e+06 9925 467218 72796 1965 1725
+Pred*dist = -0.0601051
+Real*dist = 0.0948632
+Lambda = 50
+Backtracking!
+
+Iteration 29 :
+
+Elapsed time: 8847.92s (2h 27m 27s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.07 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.27 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.03 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.71 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.24 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 27.42 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 2.91 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.12 secs
+Time taken for SampleSat = 2 mins, 46.54 secs
+Done with inference
+Getting gradient...
+8
+1.87112e+07 7.2768e+06 1.45294e+07 19819 952985 155201 2767 6355
+Lambda = 50
+Maximum estimated improvement: 0.00626006
+Weights:	New		Average
+0:		4.50402		3.71637
+1:		2.3345		1.84461
+2:		-1.5703		-1.11019
+3:		1.4523		1.49445
+4:		-4.95459		-4.42464
+5:		-2.03114		-1.98226
+6:		-0.858117		-1.02953
+7:		-3.37913		-2.31575
+
+Iteration 30 :
+
+Elapsed time: 9096.09s (2h 31m 36s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.43 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 8.77 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.06 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.56 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 52.99 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 27.26 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 2.46 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 7.81 secs
+Time taken for SampleSat = 2 mins, 46.43 secs
+Done with inference
+Getting gradient...
+8
+9.35562e+06 3.63842e+06 7.26451e+06 9877 474942 77847 1196 3287
+Pred*dist = -0.00620975
+Real*dist = -0.00652848
+Lambda = 25
+Maximum estimated improvement: 0.114825
+Weights:	New		Average
+0:		4.5039		3.74262
+1:		2.28888		1.85942
+2:		-1.57872		-1.12581
+3:		1.46858		1.49359
+4:		-4.95218		-4.44222
+5:		-2.02745		-1.98376
+6:		-0.889103		-1.02485
+7:		-3.36967		-2.35088
+
+Iteration 31 :
+
+Elapsed time: 9343.97s (2h 35m 43s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.36 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 8.92 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 43.99 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.78 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.32 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.68 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.83 secs
+Time taken for SampleSat = 2 mins, 47.15 secs
+Done with inference
+Getting gradient...
+8
+9.35564e+06 3.63832e+06 7.26392e+06 9911 477838 78299 1019 3394
+Pred*dist = -0.100989
+Real*dist = -0.0783961
+Lambda = 12.5
+Maximum estimated improvement: 0.21972
+Weights:	New		Average
+0:		4.50088		3.76708
+1:		2.31761		1.8742
+2:		-1.609		-1.1414
+3:		1.46055		1.49252
+4:		-4.94791		-4.45853
+5:		-2.01765		-1.98486
+6:		-0.93002		-1.02179
+7:		-3.36431		-2.38357
+
+Iteration 32 :
+
+Elapsed time: 9592.86s (2h 39m 52s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.21 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 8.78 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 43.99 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.76 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.25 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 27.44 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 2.61 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 7.77 secs
+Time taken for SampleSat = 2 mins, 46.26 secs
+Done with inference
+Getting gradient...
+8
+9.35567e+06 3.63838e+06 7.27015e+06 9911 474417 75837 1641 2043
+Pred*dist = -0.132567
+Real*dist = -0.580677
+Lambda = 6.25
+Maximum estimated improvement: 3.0822
+Weights:	New		Average
+0:		4.48481		3.78951
+1:		2.34804		1.88901
+2:		-1.76055		-1.16075
+3:		1.44306		1.49098
+4:		-4.93418		-4.4734
+5:		-1.9813		-1.98475
+6:		-1.11047		-1.02456
+7:		-3.15117		-2.40756
+
+Iteration 33 :
+
+Elapsed time: 9840.68s (2h 44m 0s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.98 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.46 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 45.14 secs, num. preds = 105084, num. clauses = 133490
+
+
+
+
+Sample (per pred) 400, time elapsed = 2 mins, 19.69 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 54.18 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.89 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.36 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.51 secs
+Time taken for SampleSat = 2 mins, 46.46 secs
+Done with inference
+Getting gradient...
+8
+9.35562e+06 3.63846e+06 7.21864e+06 9974 528628 108259 65 8891
+Pred*dist = -1.86596
+Real*dist = 13.0142
+Lambda = 25
+Backtracking!
+
+Iteration 33 :
+
+Elapsed time: 10089.2s (2h 48m 9s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 35.21 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.91 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 45.03 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.68 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 54.19 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 29.8 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 4.42 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 9.58 secs
+Time taken for SampleSat = 2 mins, 47.32 secs
+Done with inference
+Getting gradient...
+8
+1.87113e+07 7.27663e+06 1.45158e+07 19837 970862 165958 1878 8665
+Lambda = 25
+Maximum estimated improvement: 0.058303
+Weights:	New		Average
+0:		4.49846		3.81099
+1:		2.31414		1.90189
+2:		-1.60663		-1.17426
+3:		1.45546		1.4899
+4:		-4.94864		-4.4878
+5:		-2.02229		-1.98588
+6:		-0.93893		-1.02196
+7:		-3.38869		-2.43729
+
+Iteration 34 :
+
+Elapsed time: 10338.9s (2h 52m 18s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.36 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.64 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.4 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.93 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.6 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.65 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.8 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.98 secs
+Time taken for SampleSat = 2 mins, 47.04 secs
+Done with inference
+Getting gradient...
+8
+9.3556e+06 3.63831e+06 7.26052e+06 9903 482688 80600 1023 4056
+Pred*dist = -0.0384685
+Real*dist = -0.0224478
+Lambda = 25
+Maximum estimated improvement: 0.0203837
+Weights:	New		Average
+0:		4.5048		3.8314
+1:		2.31328		1.91399
+2:		-1.60689		-1.18698
+3:		1.46331		1.48912
+4:		-4.94833		-4.50134
+5:		-2.02249		-1.98696
+6:		-0.955481		-1.02001
+7:		-3.40817		-2.46584
+
+Iteration 35 :
+
+Elapsed time: 10587.9s (2h 56m 27s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.71 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 10.03 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.65 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.26 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 54.74 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 29.47 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.99 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 9.24 secs
+Time taken for SampleSat = 2 mins, 47.14 secs
+Done with inference
+Getting gradient...
+8
+9.35557e+06 3.6384e+06 7.25302e+06 9929 490683 85435 411 5320
+Pred*dist = -0.0196426
+Real*dist = -0.0358004
+Lambda = 12.5
+Maximum estimated improvement: 0.501744
+Weights:	New		Average
+0:		4.54366		3.85175
+1:		2.28935		1.92471
+2:		-1.60037		-1.19879
+3:		1.50146		1.48947
+4:		-4.94759		-4.51409
+5:		-2.02759		-1.98812
+6:		-0.990483		-1.01916
+7:		-3.5709		-2.49742
+
+Iteration 36 :
+
+Elapsed time: 10837.2s (3h 0m 37s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 35 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 10.02 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.62 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.65 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 54.29 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 29.38 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 4.13 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 9.29 secs
+Time taken for SampleSat = 2 mins, 47.15 secs
+Done with inference
+Getting gradient...
+8
+9.35563e+06 3.63831e+06 7.26102e+06 9919 482912 80287 895 3871
+Pred*dist = -0.446568
+Real*dist = -0.0800543
+Lambda = 12.5
+Maximum estimated improvement: 0.000883914
+Weights:	New		Average
+0:		4.5411		3.8709
+1:		2.29119		1.93489
+2:		-1.6012		-1.20997
+3:		1.49477		1.48962
+4:		-4.94751		-4.52613
+5:		-2.0273		-1.98921
+6:		-0.989148		-1.01833
+7:		-3.57081		-2.52723
+
+Iteration 37 :
+
+Elapsed time: 11086.6s (3h 4m 46s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.7 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.86 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.82 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.07 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.85 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.74 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 2.89 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.02 secs
+Time taken for SampleSat = 2 mins, 46.24 secs
+Done with inference
+Getting gradient...
+8
+9.35567e+06 3.63837e+06 7.25786e+06 9901 486331 82036 825 4555
+Pred*dist = -0.000799789
+Real*dist = 0.00404972
+Lambda = 50
+Backtracking!
+
+Iteration 37 :
+
+Elapsed time: 11334.6s (3h 8m 54s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 35.24 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 10.09 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.21 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.37 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 54.51 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 29.05 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.75 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 9.12 secs
+Time taken for SampleSat = 2 mins, 47.11 secs
+Done with inference
+Getting gradient...
+8
+1.87113e+07 7.27672e+06 1.45286e+07 19830 959915 156204 2238 6446
+Lambda = 50
+Maximum estimated improvement: 0.0285391
+Weights:	New		Average
+0:		4.53512		3.88885
+1:		2.28947		1.94448
+2:		-1.60388		-1.22062
+3:		1.48207		1.48942
+4:		-4.94711		-4.53751
+5:		-2.02596		-1.9902
+6:		-0.991875		-1.01762
+7:		-3.56853		-2.55538
+
+Iteration 38 :
+
+Elapsed time: 11583.8s (3h 13m 3s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.77 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.13 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.37 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.03 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.98 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.82 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.25 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.42 secs
+Time taken for SampleSat = 2 mins, 46.97 secs
+Done with inference
+Getting gradient...
+8
+9.35564e+06 3.63829e+06 7.26104e+06 9925 483809 80033 883 3764
+Pred*dist = -0.0260627
+Real*dist = -0.00316716
+Lambda = 50
+Maximum estimated improvement: 0.0022296
+Weights:	New		Average
+0:		4.5336		3.90582
+1:		2.29201		1.95362
+2:		-1.60454		-1.23072
+3:		1.47733		1.4891
+4:		-4.94708		-4.54829
+5:		-2.02564		-1.99114
+6:		-0.991761		-1.01694
+7:		-3.57201		-2.58213
+
+Iteration 39 :
+
+Elapsed time: 11832.3s (3h 17m 12s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 35.07 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.58 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.1 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.22 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 54.46 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 29.09 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.91 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 9.01 secs
+Time taken for SampleSat = 2 mins, 47.14 secs
+Done with inference
+Getting gradient...
+8
+9.35564e+06 3.63833e+06 7.26552e+06 9889 477426 77870 1083 3104
+Pred*dist = -0.00220995
+Real*dist = -0.00396115
+Lambda = 25
+Maximum estimated improvement: 0.0343462
+Weights:	New		Average
+0:		4.52478		3.92169
+1:		2.30573		1.96265
+2:		-1.60932		-1.24043
+3:		1.45147		1.48813
+4:		-4.94671		-4.5585
+5:		-2.02343		-1.99196
+6:		-0.992666		-1.01631
+7:		-3.59005		-2.60797
+
+Iteration 40 :
+
+Elapsed time: 12081.4s (3h 21m 21s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.41 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 8.7 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 43.33 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.12 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.68 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.4 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.81 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 9.13 secs
+Time taken for SampleSat = 2 mins, 46.98 secs
+Done with inference
+Getting gradient...
+8
+9.35564e+06 3.63835e+06 7.25694e+06 9946 486498 82575 767 4507
+Pred*dist = -0.0332918
+Real*dist = 0.00580907
+Lambda = 100
+Backtracking!
+
+Iteration 40 :
+
+Elapsed time: 12330.6s (3h 25m 30s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.35 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 8.95 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.09 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.96 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.48 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 27.83 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.07 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.18 secs
+Time taken for SampleSat = 2 mins, 46.62 secs
+Done with inference
+Getting gradient...
+8
+1.87113e+07 7.27664e+06 1.45243e+07 19790 963967 159020 1762 7379
+Lambda = 100
+Maximum estimated improvement: 0.00759798
+Weights:	New		Average
+0:		4.53107		3.93692
+1:		2.29036		1.97084
+2:		-1.60632		-1.24958
+3:		1.4828		1.488
+4:		-4.9468		-4.56821
+5:		-2.02473		-1.99278
+6:		-0.991037		-1.01568
+7:		-3.57721		-2.6322
+
+Iteration 41 :
+
+Elapsed time: 12578.8s (3h 29m 38s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.36 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 8.95 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 43.9 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.02 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.4 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.23 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.67 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.82 secs
+Time taken for SampleSat = 2 mins, 47 secs
+Done with inference
+Getting gradient...
+8
+9.35559e+06 3.63833e+06 7.25916e+06 9947 483408 81108 770 4230
+Pred*dist = -0.0073312
+Real*dist = -0.00102319
+Lambda = 100
+Maximum estimated improvement: 0.00483965
+Weights:	New		Average
+0:		4.53016		3.95139
+1:		2.28873		1.9786
+2:		-1.60716		-1.2583
+3:		1.48346		1.48789
+4:		-4.94663		-4.57744
+5:		-2.02433		-1.99355
+6:		-0.989114		-1.01503
+7:		-3.58346		-2.65541
+
+Iteration 42 :
+
+Elapsed time: 12827.7s (3h 33m 47s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.28 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 8.83 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.16 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.52 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 52.97 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.05 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 2.93 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.09 secs
+Time taken for SampleSat = 2 mins, 46.57 secs
+Done with inference
+Getting gradient...
+8
+9.35565e+06 3.63826e+06 7.25826e+06 9935 483060 81708 667 4483
+Pred*dist = -0.00479883
+Real*dist = -0.00594113
+Lambda = 50
+Maximum estimated improvement: 0.0328251
+Weights:	New		Average
+0:		4.52763		3.96511
+1:		2.28999		1.98601
+2:		-1.60749		-1.26661
+3:		1.48058		1.48772
+4:		-4.94634		-4.58622
+5:		-2.0243		-1.99428
+6:		-0.977539		-1.01414
+7:		-3.60497		-2.67801
+
+Iteration 43 :
+
+Elapsed time: 13075.8s (3h 37m 55s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.65 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.89 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 45.38 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.91 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 54.25 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 29.19 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 4.15 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 9.23 secs
+Time taken for SampleSat = 2 mins, 47.19 secs
+Done with inference
+Getting gradient...
+8
+9.35569e+06 3.63846e+06 7.27094e+06 9934 474537 74865 1631 1763
+Pred*dist = -0.0317469
+Real*dist = 0.0555987
+Lambda = 200
+Backtracking!
+
+Iteration 43 :
+
+Elapsed time: 13325.1s (3h 42m 5s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.54 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 8.91 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.05 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.7 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 53.36 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 28.67 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.13 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.46 secs
+Time taken for SampleSat = 2 mins, 46.75 secs
+Done with inference
+Getting gradient...
+8
+1.87113e+07 7.27665e+06 1.45278e+07 19866 961059 157218 2380 6414
+Lambda = 200
+Maximum estimated improvement: 0.0106685
+Weights:	New		Average
+0:		4.52908		3.97823
+1:		2.28779		1.99303
+2:		-1.60819		-1.27456
+3:		1.47995		1.48753
+4:		-4.9464		-4.5946
+5:		-2.02369		-1.99497
+6:		-0.994432		-1.01368
+7:		-3.58156		-2.69903
+
+Iteration 44 :
+
+Elapsed time: 13573.7s (3h 46m 13s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.08 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.13 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 43.92 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.52 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 52.81 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 27.97 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 2.61 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 7.8 secs
+Time taken for SampleSat = 2 mins, 46.38 secs
+Done with inference
+Getting gradient...
+8
+9.35565e+06 3.6384e+06 7.26926e+06 9924 477368 75309 1557 2205
+Pred*dist = -0.0101154
+Real*dist = -0.0277738
+Lambda = 100
+Maximum estimated improvement: 0.220638
+Weights:	New		Average
+0:		4.52376		3.99063
+1:		2.27682		1.99948
+2:		-1.61703		-1.28234
+3:		1.46459		1.48701
+4:		-4.9451		-4.60257
+5:		-2.0194		-1.99552
+6:		-1.0248		-1.01393
+7:		-3.55966		-2.71859
+
+Iteration 45 :
+
+Elapsed time: 13821.5s (3h 50m 21s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 34.1 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 9.79 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.35 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 18.67 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 54.27 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 29.03 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 3.44 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 8.62 secs
+Time taken for SampleSat = 2 mins, 46.9 secs
+Done with inference
+Getting gradient...
+8
+9.35565e+06 3.63832e+06 7.26092e+06 9927 485088 80689 888 3977
+Pred*dist = -0.204573
+Real*dist = 0.0135275
+Lambda = 400
+Backtracking!
+
+Iteration 45 :
+
+Elapsed time: 14070.2s (3h 54m 30s)
+Running inference ...
+Running MC-SAT sampling...
+Sample (per pred) 100, time elapsed = 35.04 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 200, time elapsed = 1 mins, 10.35 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 300, time elapsed = 1 mins, 44.61 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 400, time elapsed = 2 mins, 19.85 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 500, time elapsed = 2 mins, 55.28 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 600, time elapsed = 3 mins, 29.62 secs, num. preds = 105084, num. clauses = 133490
+Sample (per pred) 700, time elapsed = 4 mins, 4.18 secs, num. preds = 105084, num. clauses = 133490
+Done MC-SAT sampling. 714 samples.
+Final ground predicate number: 105084
+Final ground clause number: 133490
+Time taken for MC-SAT sampling = 4 mins, 9.72 secs
+Time taken for SampleSat = 2 mins, 47.8 secs
+Done with inference
+Getting gradient...
+8
+1.87113e+07 7.2767e+06 1.45238e+07 19865 966659 159136 2025 7345
+Lambda = 400
+Maximum estimated improvement: 1.40043e-06
+Upper bound is less than 1e-05; halting learning.
+
+Learned Weights :
+0:4.52908
+1:2.28779
+2:-1.60819
+3:1.47995
+4:-4.9464
+5:-2.02369
+6:-0.994432
+7:-3.58156
+
+
+Done learning discriminative weights.
+Time Taken for learning = 3 hrs, 58.6688 mins
+Total time = 4 hrs, 0.075 mins
