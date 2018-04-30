@@ -1,0 +1,15 @@
+//person ={P1,P2,P3,P4}
+//time={1,2}
+
+Distance(person,person,dist,time)
+PartOfSameGroup(person,person,time)
+Leader(person)
+Visitor(person)
+
+1 Distance(p1,p2,d,t) ^ d<100 ^ p1!=p2 => PartOfSameGroup(p1,p2,t)
+
+1 Distance(p1,p2,d,t) ^ d<=25 ^ PartOfSameGroup(p1,p2,t) ^ Visitor(p2) => Visitor(p1)
+
+1 Distance(p1,p2,d,t) ^ d>22 ^ d<100 ^ PartOfSameGroup(p1,p2,t) ^ Visitor(p2) => Leader(p1)
+
+1 Visitor(p1) => !Leader(p1)

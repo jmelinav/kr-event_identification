@@ -1,0 +1,30 @@
+//predicate declarations
+PartOfSameGroup(person,person,time)
+Distance(person,person,dist,time)
+Visitor(person)
+Leader(person)
+
+// 4.52908  Distance(p1,p2,d,t) ^ d < 100 ^ p1 != p2 => PartOfSameGroup(p1,p2,t)
+4.52908  !Distance(a1,a2,a3,a4) v PartOfSameGroup(a1,a2,a4) v a1 = a2 v !(a3 < 100)
+
+// 2.28779  Distance(p1,p2,d,t) ^ d <= 25 ^ PartOfSameGroup(p1,p2,t) ^ Visitor(p2) => Visitor(p1)
+2.28779  !Distance(a1,a2,a3,a4) v !PartOfSameGroup(a1,a2,a4) v Visitor(a1) v !Visitor(a2) v !(a3 < 25)
+
+// -1.60819  Distance(p1,p2,d,t) ^ d > 22 ^ d < 100 ^ PartOfSameGroup(p1,p2,t) ^ Visitor(p2) => Leader(p1)
+-1.60819  !Distance(a1,a2,a3,a4) v !PartOfSameGroup(a1,a2,a4) v Leader(a1) v !Visitor(a2) v !(a3 < 100) v !(a3 > 22)
+
+// 1.47995  Visitor(p1) => !Leader(p1)
+1.47995  !Leader(a1) v !Visitor(a1)
+
+// -4.9464  Distance(a1,a2,a3,a4)
+-4.9464  Distance(a1,a2,a3,a4)
+
+// -2.02369  PartOfSameGroup(a1,a2,a3)
+-2.02369  PartOfSameGroup(a1,a2,a3)
+
+// -0.994432  Leader(a1)
+-0.994432  Leader(a1)
+
+// -3.58156  Visitor(a1)
+-3.58156  Visitor(a1)
+
